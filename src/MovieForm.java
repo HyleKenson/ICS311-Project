@@ -55,7 +55,8 @@ class MovieForm extends JPanel implements ActionListener {
         movieContentRatingArea.setBorder(BorderFactory.createTitledBorder("Movie Content Rating"));
         movieContentRatingArea.setBounds (0, 300, 400, 50);
         movieContentRatingArea.setEditable(false);
-
+        
+        //size of buttons
         firstButton.setBounds (0, 500, 100, 50);
         previousButton.setBounds (100, 500, 100, 50);
         nextButton.setBounds (200, 500, 100, 50);

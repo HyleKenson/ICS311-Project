@@ -2,14 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/* Here we are first declaring our class that will act as the
- * base for other panels or in other terms the base for CardLayout.
- */
-
 public class MainLayout
 {
-    private static final String CARD_JBUTTON =  "Card JButton";
-    private static final String CARD_JTEXTFIELD = "Card JTextField";    
+    private static final String movieForm =  "Movie Form";
+    private static final String actorForm = "Actor Form";    
     
     private static void createAndShowGUI()
     {
@@ -21,20 +17,10 @@ public class MainLayout
         final JPanel contentPane = new JPanel();
         contentPane.setLayout(new CardLayout(20, 20));
 
-        /* Here we be making objects of the Window Series classes
-         * so that, each one of them can be added to the JPanel 
-         * having CardLayout. 
-         */
         MovieForm win1 = new MovieForm();
-        contentPane.add(win1, CARD_JBUTTON);
+        contentPane.add(win1, movieForm);
         ActorForm win2 = new ActorForm();
-        contentPane.add(win2, CARD_JTEXTFIELD);
-
-
-        /* We need two JButtons to go to the next Card
-         * or come back to the previous Card, as and when
-         * desired by the User.
-         */
+        contentPane.add(win2, actorForm);
 
         JPanel buttonPanel = new JPanel();
         String[] tables = { "Movies", "Actors" };
@@ -42,11 +28,7 @@ public class MainLayout
         
         buttonPanel.add(tablesBox);
 
-
-        /* Adding the ActionListeners to the JButton,
-         * so that the user can see the next Card or
-         * come back to the previous Card, as desired.
-         */
+        // Switches the card
         tablesBox.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)

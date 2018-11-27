@@ -1,5 +1,4 @@
 import java.awt.*;
-
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,13 +9,10 @@ import javax.swing.*;
 class ActorForm extends JPanel implements ActionListener {
 	
     private JButton submitButton;
-
     JTextField actorIDArea = new JTextField();
     JTextArea actorFnameArea = new JTextArea(1, 50);
     JTextArea actorLnameArea = new JTextArea(1, 50);
     JTextArea actorGenderArea = new JTextArea(1, 1);
-
-    private int rowCount = 1;
 
     public ActorForm() {
         //construct components
