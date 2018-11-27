@@ -9,79 +9,56 @@ import javax.swing.*;
 
 class ActorForm extends JPanel implements ActionListener {
 	
-    private JButton firstButton;
-    private JButton previousButton;
-    private JButton nextButton;
-    private JButton lastButton;
-    JTextArea movieIDArea = new JTextArea(4, 50);
-    JTextArea movieTitleArea = new JTextArea(4, 50);
-    JTextArea movieYearArea = new JTextArea(4, 50);
-    JTextArea movieRuntimeArea = new JTextArea(4, 50);
-    JTextArea movieBudgetArea = new JTextArea(4, 50);
-    JTextArea movieGrossArea = new JTextArea(4, 50);
-    JTextArea movieContentRatingArea = new JTextArea(4, 50);
+    private JButton submitButton;
+
+    JTextArea actorIDArea = new JTextArea(1, 50);
+    JTextArea actorFnameArea = new JTextArea(1, 50);
+    JTextArea actorLnameArea = new JTextArea(1, 50);
+    JTextArea actorGenderArea = new JTextArea(1, 1);
+
     private int rowCount = 1;
 
     public ActorForm() {
         //construct components
-        firstButton = new JButton ("First");
-        previousButton = new JButton ("Previous");
-        nextButton = new JButton ("Next");
-        lastButton = new JButton ("Last");
-        
+        submitButton = new JButton ("Submit");
+
         //adjust size and set layout
         setPreferredSize (new Dimension (400, 550));
         setLayout (null);
 
         //set component bounds 
-        movieIDArea.setBorder(BorderFactory.createTitledBorder("Test"));
-        movieIDArea.setBounds (0, 0, 400, 50);
-        movieTitleArea.setBorder(BorderFactory.createTitledBorder("Movie Title"));
-        movieTitleArea.setBounds (0, 50, 400, 50);
-        movieYearArea.setBorder(BorderFactory.createTitledBorder("Movie Year"));
-        movieYearArea.setBounds (0, 100, 400, 50);
-        movieRuntimeArea.setBorder(BorderFactory.createTitledBorder("Movie Runtime"));
-        movieRuntimeArea.setBounds (0, 150, 400, 50);
-        movieBudgetArea.setBorder(BorderFactory.createTitledBorder("Movie Budget"));
-        movieBudgetArea.setBounds (0, 200, 400, 50);
-        movieGrossArea.setBorder(BorderFactory.createTitledBorder("Movie Gross"));
-        movieGrossArea.setBounds (0, 250, 400, 50);
-        movieContentRatingArea.setBorder(BorderFactory.createTitledBorder("Movie Content Rating"));
-        movieContentRatingArea.setBounds (0, 300, 400, 50);
+        actorIDArea.setBorder(BorderFactory.createTitledBorder("Actor ID"));
+        actorIDArea.setBounds (0, 0, 400, 50);
+        actorFnameArea.setBorder(BorderFactory.createTitledBorder("Actor First Name"));
+        actorFnameArea.setBounds (0, 200, 400, 50);
+        actorLnameArea.setBorder(BorderFactory.createTitledBorder("Actor Last Name"));
+        actorLnameArea.setBounds (0, 250, 400, 50);
+        actorGenderArea.setBorder(BorderFactory.createTitledBorder("Actor Gender"));
+        actorGenderArea.setBounds (0, 300, 400, 50);
 
-        firstButton.setBounds (0, 500, 100, 50);
-        previousButton.setBounds (100, 500, 100, 50);
-        nextButton.setBounds (200, 500, 100, 50);
-        lastButton.setBounds (300, 500, 100, 50);
+
+        submitButton.setBounds (0, 100, 100, 50);
+
 
         //add components
-        add(movieIDArea);
-        add(movieYearArea);
-        add(movieTitleArea);
-        add(movieRuntimeArea);
-        add(movieBudgetArea);
-        add(movieGrossArea);
-        add(movieContentRatingArea);
-        add(firstButton);
-        add(previousButton);
-        add(nextButton);
-        add(lastButton);
+        add(actorIDArea);
+        add(actorFnameArea);
+        add(actorLnameArea);
+        add(actorGenderArea);
+
+        add(submitButton);
         
         //button listers
-        firstButton.addActionListener(this);
-        previousButton.addActionListener(this);
-        nextButton.addActionListener(this);
-        lastButton.addActionListener(this);
-        
+        submitButton.addActionListener(this);
     }
-    // Sets text area using first row from movie
+    // Sets text area using first row from actor
     public void getRow(String row) {
     	try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
     		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/ics311project?user=root&password=ics311");
     		System.out.println("Connection Object Created : " + con);
     		Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from movie");
+            ResultSet rs = st.executeQuery("select * from actor");
             int totalRows = 0;
             while(rs.next()){
                 totalRows ++;
@@ -104,14 +81,11 @@ class ActorForm extends JPanel implements ActionListener {
                 rs.last();
             }
 
-            movieIDArea.setText(rs.getString(1));
-            movieTitleArea.setText(rs.getString(2));
-            movieYearArea.setText(rs.getString(3));
-            movieRuntimeArea.setText(rs.getString(4));
-            movieBudgetArea.setText(rs.getString(5));
-            movieGrossArea.setText(rs.getString(6));
-            movieContentRatingArea.setText(rs.getString(7));
-            
+            actorIDArea.setText(rs.getString(1));
+            actorFnameArea.setText(rs.getString(2));
+            actorLnameArea.setText(rs.getString(3));
+            actorGenderArea.setText(rs.getString(4));
+
     		st.close();
             rs.close();
         } catch (Exception ex) { ex.printStackTrace();}
@@ -120,17 +94,8 @@ class ActorForm extends JPanel implements ActionListener {
 	// Button private adapter class
 	public void actionPerformed(ActionEvent event) {
 		Object srcObj = event.getSource();
-		if (srcObj == firstButton) {
+		if (srcObj == submitButton) {
             getRow("First");
-		}
-		else if (srcObj == previousButton) {
-			getRow("Previous");
-		}
-		else if (srcObj == nextButton) {
-			getRow("Next");
-		}
-		else if (srcObj == lastButton) {
-			getRow("Last");
 		}
 	}
 }

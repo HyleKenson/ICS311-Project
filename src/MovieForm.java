@@ -30,24 +30,31 @@ class MovieForm extends JPanel implements ActionListener {
         lastButton = new JButton ("Last");
         
         //adjust size and set layout
-        setPreferredSize (new Dimension (400, 500));
+        setPreferredSize (new Dimension (400, 550));
         setLayout (null);
 
         //set component bounds 
         movieIDArea.setBorder(BorderFactory.createTitledBorder("Movie ID"));
         movieIDArea.setBounds (0, 0, 400, 50);
+        movieIDArea.setEditable(false);
         movieTitleArea.setBorder(BorderFactory.createTitledBorder("Movie Title"));
         movieTitleArea.setBounds (0, 50, 400, 50);
+        movieTitleArea.setEditable(false);
         movieYearArea.setBorder(BorderFactory.createTitledBorder("Movie Year"));
         movieYearArea.setBounds (0, 100, 400, 50);
+        movieYearArea.setEditable(false);
         movieRuntimeArea.setBorder(BorderFactory.createTitledBorder("Movie Runtime"));
         movieRuntimeArea.setBounds (0, 150, 400, 50);
+        movieRuntimeArea.setEditable(false);
         movieBudgetArea.setBorder(BorderFactory.createTitledBorder("Movie Budget"));
         movieBudgetArea.setBounds (0, 200, 400, 50);
+        movieBudgetArea.setEditable(false);
         movieGrossArea.setBorder(BorderFactory.createTitledBorder("Movie Gross"));
         movieGrossArea.setBounds (0, 250, 400, 50);
+        movieGrossArea.setEditable(false);
         movieContentRatingArea.setBorder(BorderFactory.createTitledBorder("Movie Content Rating"));
         movieContentRatingArea.setBounds (0, 300, 400, 50);
+        movieContentRatingArea.setEditable(false);
 
         firstButton.setBounds (0, 500, 100, 50);
         previousButton.setBounds (100, 500, 100, 50);
@@ -75,7 +82,7 @@ class MovieForm extends JPanel implements ActionListener {
         
     }
 
-    // Sets text area using first row from movie
+    // Sets text area
     public void getRow(String row) {
     	try {
     		Class.forName("com.mysql.jdbc.Driver");
@@ -104,7 +111,8 @@ class MovieForm extends JPanel implements ActionListener {
                 rowCount = totalRows;
                 rs.last();
             }
-
+            
+            // set text area based on columns
             movieIDArea.setText(rs.getString(1));
             movieTitleArea.setText(rs.getString(2));
             movieYearArea.setText(rs.getString(3));
