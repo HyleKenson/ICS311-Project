@@ -6,12 +6,11 @@ import javax.swing.*;
  * base for other panels or in other terms the base for CardLayout.
  */
 
-public class CardLayoutTest
+public class MainLayout
 {
     private static final String CARD_JBUTTON =  "Card JButton";
     private static final String CARD_JTEXTFIELD = "Card JTextField";    
-    private static final String CARD_JRADIOBUTTON = "Card JRadioButton";
-
+    
     private static void createAndShowGUI()
     {
         JFrame frame = new JFrame("Movie Database");
@@ -28,7 +27,7 @@ public class CardLayoutTest
          */
         MovieForm win1 = new MovieForm();
         contentPane.add(win1, CARD_JBUTTON);
-        Window2 win2 = new Window2();
+        ActorForm win2 = new ActorForm();
         contentPane.add(win2, CARD_JTEXTFIELD);
 
 

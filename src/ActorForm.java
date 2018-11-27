@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.*;
 
-class MovieForm extends JPanel implements ActionListener {
+class ActorForm extends JPanel implements ActionListener {
 	
     private JButton firstButton;
     private JButton previousButton;
@@ -22,7 +22,7 @@ class MovieForm extends JPanel implements ActionListener {
     JTextArea movieContentRatingArea = new JTextArea(4, 50);
     private int rowCount = 1;
 
-    public MovieForm() {
+    public ActorForm() {
         //construct components
         firstButton = new JButton ("First");
         previousButton = new JButton ("Previous");
@@ -30,11 +30,11 @@ class MovieForm extends JPanel implements ActionListener {
         lastButton = new JButton ("Last");
         
         //adjust size and set layout
-        setPreferredSize (new Dimension (400, 500));
+        setPreferredSize (new Dimension (400, 550));
         setLayout (null);
 
         //set component bounds 
-        movieIDArea.setBorder(BorderFactory.createTitledBorder("Movie ID"));
+        movieIDArea.setBorder(BorderFactory.createTitledBorder("Test"));
         movieIDArea.setBounds (0, 0, 400, 50);
         movieTitleArea.setBorder(BorderFactory.createTitledBorder("Movie Title"));
         movieTitleArea.setBounds (0, 50, 400, 50);
@@ -74,11 +74,10 @@ class MovieForm extends JPanel implements ActionListener {
         lastButton.addActionListener(this);
         
     }
-
     // Sets text area using first row from movie
     public void getRow(String row) {
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/ics311project?user=root&password=ics311");
     		System.out.println("Connection Object Created : " + con);
     		Statement st = con.createStatement();
