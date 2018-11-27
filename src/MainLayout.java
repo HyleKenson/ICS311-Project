@@ -24,14 +24,14 @@ public class MainLayout
 
         JPanel buttonPanel = new JPanel();
         String[] tables = { "Movies", "Actors" };
-        final JComboBox tablesBox = new JComboBox(tables);
+        JComboBox<String> tablesBox = new JComboBox<>(tables);
         
         buttonPanel.add(tablesBox);
 
         // Switches the card
         tablesBox.addActionListener(new ActionListener()
         {
-            public void actionPerformed(ActionEvent ae)
+            public void actionPerformed(ActionEvent e)
             {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.previous(contentPane);
