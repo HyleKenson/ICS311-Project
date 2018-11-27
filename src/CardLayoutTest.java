@@ -14,7 +14,7 @@ public class CardLayoutTest
 
     private static void createAndShowGUI()
     {
-        JFrame frame = new JFrame("Card Layout Test");
+        JFrame frame = new JFrame("Movie Database");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -26,7 +26,7 @@ public class CardLayoutTest
          * so that, each one of them can be added to the JPanel 
          * having CardLayout. 
          */
-        Window1 win1 = new Window1();
+        MovieForm win1 = new MovieForm();
         contentPane.add(win1, CARD_JBUTTON);
         Window2 win2 = new Window2();
         contentPane.add(win2, CARD_JTEXTFIELD);
@@ -36,34 +36,24 @@ public class CardLayoutTest
          * or come back to the previous Card, as and when
          * desired by the User.
          */
-        JPanel buttonPanel = new JPanel(); 
-        final JButton previousButton = new JButton("PREVIOUS");
-        previousButton.setBackground(Color.BLACK);
-        previousButton.setForeground(Color.WHITE);
-        final JButton nextButton = new JButton("NEXT");
-        nextButton.setBackground(Color.RED);
-        nextButton.setForeground(Color.WHITE);
-        buttonPanel.add(previousButton);
-        buttonPanel.add(nextButton);
+
+        JPanel buttonPanel = new JPanel();
+        String[] tables = { "Movies", "Actors" };
+        final JComboBox tablesBox = new JComboBox(tables);
+        
+        buttonPanel.add(tablesBox);
+
 
         /* Adding the ActionListeners to the JButton,
          * so that the user can see the next Card or
          * come back to the previous Card, as desired.
          */
-        previousButton.addActionListener(new ActionListener()
+        tablesBox.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
             {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.previous(contentPane);
-            }
-        });
-        nextButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                cardLayout.next(contentPane);   
             }
         });
 
